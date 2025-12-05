@@ -1,0 +1,92 @@
+\documentclass[12pt, a4paper]{report}
+
+% --- Pakiety i kodowanie ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}  % Język polski
+\usepackage{graphicx}       % Obsługa obrazków
+\usepackage{geometry}       % Marginesy
+\usepackage{csquotes}       % Cudzysłowy
+\usepackage{float}          % Pozycjonowanie tabel/obrazków
+\usepackage{hyperref}       % Linki w dokumencie
+\usepackage{fancyhdr}       % Własne nagłówki i stopki
+\usepackage{titlesec}       % Formatowanie tytułów
+
+% --- Bibliografia ---
+\usepackage[backend=biber, style=numeric]{biblatex}
+\addbibresource{references.bib}
+
+% --- Ustawienia marginesów ---
+\geometry{
+ left=25mm,
+ right=25mm,
+ top=25mm,
+ bottom=25mm
+}
+
+% --- Dane autora ---
+\newcommand{\autorImieNazwisko}{Mikołaj Zdybiewski} % <-- Imie i nazwisko autor
+\newcommand{\tytulPracy}{Wprowadzenie do Sztucznej Inteligencji}
+
+% --- KONFIGURACJA NAGŁÓWKÓW ---
+\pagestyle{fancy}
+\fancyhf{} 
+
+% Ustawienia dla standardowych stron
+\fancyhead[L]{\nouppercase{\leftmark}} % Lewy górny: Tytuł rozdziału
+\fancyhead[R]{\autorImieNazwisko}      % Prawy górny: Autor (Mikołaj Zdybiewski)
+\fancyfoot[C]{\thepage}                % Dół środek: Numer strony
+
+% Usunięcie słowa "Rozdział X" z nagłówka
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+
+% --- WYMUSZENIE NAGŁÓWKA NA STRONACH STARTOWYCH ROZDZIAŁÓW ---
+\fancypagestyle{plain}{
+    \fancyhf{} 
+    \fancyhead[L]{\nouppercase{\leftmark}} 
+    \fancyhead[R]{\autorImieNazwisko}      
+    \fancyfoot[C]{\thepage}
+}
+
+% --- POCZĄTEK DOKUMENTU ---
+\begin{document}
+
+% --- Strona tytułowa ---
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \Huge \textbf{\tytulPracy}
+    \vspace{1.5cm}
+    
+    \Large \textbf{Raport zaliczeniowy}
+    \vspace{1.5cm}
+    
+    \textbf{Autor:} \\ \autorImieNazwisko
+    \vspace{4cm}
+    
+    \textbf{Data:} \\ 5 grudnia 2025
+    \vfill
+    
+    \Large Politechnika Wrocławska\\Wydział Informatyki i Telekomunikacji
+\end{titlepage}
+
+% --- Streszczenie ---
+\begin{abstract}
+    \noindent Dokument stanowi wprowadzenie do tematyki sztucznej inteligencji, omawiając jej historię, rodzaje oraz zastosowania. Jest to projekt zaliczeniowy prezentujący umiejętności składu tekstu w systemie \LaTeX, w tym obsługę bibliografii, tabel i grafik, z zachowaniem spójnych nagłówków i struktury dokumentu.
+\end{abstract}
+
+% --- Spis treści ---
+\tableofcontents
+\newpage
+
+% --- Dołączanie rozdziałów ---
+\input{rozdzial1}
+\input{rozdzial2}
+\input{rozdzial3}
+\input{rozdzial4}
+
+% --- Bibliografia ---
+\newpage
+\printbibliography[heading=bibintoc, title={Bibliografia}]
+
+\end{document}
